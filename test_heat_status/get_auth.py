@@ -1,7 +1,7 @@
 from keystoneauth1 import session
 from keystoneauth1.identity import v3
 
-from env import *  # Get envs var.
+from get_env import *  # Get envs var.
 
 auth = v3.Password(auth_url=OS_AUTH_URL,
                    user_domain_name=OS_USER_DOMAIN_NAME,

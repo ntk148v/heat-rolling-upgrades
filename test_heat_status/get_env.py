@@ -1,7 +1,9 @@
+import os
 import subprocess as sp
 
 # Source admin-openrc and get env vars.
-SOURCE = 'admin-openrc'
+CUR_DIR = os.path.dirname(os.path.realpath(__file__))
+SOURCE = CUR_DIR + '/admin-openrc'
 proc = sp.Popen(['bash', '-c', 'source {} && env'.format(SOURCE)],
                 stdout=sp.PIPE)
 
@@ -16,4 +18,4 @@ OS_USERNAME = source_env['OS_USERNAME']
 OS_AUTH_URL = source_env['OS_AUTH_URL']
 OS_PASSWORD = source_env['OS_PASSWORD']
 OS_IDENTITY_API_VERSION = source_env['OS_IDENTITY_API_VERSION']
-OS_VIP =
+OS_VIP = source_env['OS_VIP']

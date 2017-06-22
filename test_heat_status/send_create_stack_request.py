@@ -1,13 +1,16 @@
+from requests import ConnectionError
 from oslo_serialization import jsonutils as json
 
-from env import *
+from get_env import *
 from get_auth import TOKEN, PROJECT_ID
 from utils import *
 
-headers = {
+token_headers = {
     'X-Auth-Token': TOKEN,
     'Content-Type': 'application/json'
 }
+
+create_headers = token_headers
 
 create_data = {
     'tenant_id': PROJECT_ID,
@@ -29,12 +32,20 @@ create_data = {
 }
 
 
-create_url = 'http://{}:'
+create_url = 'http://{}:8004/v1/{}/stacks' . format(OS_VIP, PROJECT_ID)
+
+list_headers = create_headers
+list_url = create_url
 
 
 if __name__ == '__main__':
-    i = 0
-    # n = len(list_servers)
-
     while continue_test:
-        pass
+        try:
+            time.sleep(0.5)
+            # Create stack
+            resp = send_request(create_url, 'POST', headers=create_headers,
+                                data=create_data)
+            # List stacks
+            resp = send_request(list_url, 'GET', headers=list_headers)
+        except ConnectionError:
+            pass

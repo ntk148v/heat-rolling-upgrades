@@ -25,7 +25,8 @@ def _callback_func(sess, resp):
             "timestamp": timestamp,
             "status": resp.status_code
         })
-        print("%d - %d - %s" % (timestamp, resp.status_code, resp.request.method))
+        print("%d - %d - %s" %
+              (timestamp, resp.status_code, resp.request.method))
         print("via: {}".format(resp.url))
 
 
@@ -37,7 +38,8 @@ def error_request_counter():
 
     is_find_start = True
     count = 0
-    start, end = 0, 0  # assign this vars prepare if we dont' have downtime
+    # assign this vars prepare if we dont' have downtime
+    start, end = 0, 0
     error_dict = {}
 
     for task in tasks:
@@ -94,15 +96,20 @@ def downtime_counter():
 
 def send_request(url, method, headers=None, data=None, **kwargs):
     if method == 'GET':
-        return grequests.get(url, headers=headers, callback=_callback_func, **kwargs)
+        return grequests.get(url, headers=headers,
+                             callback=_callback_func, **kwargs)
     elif method == 'POST':
-        return grequests.post(url, headers=headers, callback=_callback_func, **kwargs)
+        return grequests.post(url, headers=headers,
+                              callback=_callback_func, **kwargs)
     elif method == 'PUT':
-        return grequests.put(url, headers=headers, data=data, callback=_callback_func, **kwargs)
+        return grequests.put(url, headers=headers, data=data,
+                             callback=_callback_func, **kwargs)
     elif method == 'PATCH':
-        return grequests.patch(url, headers=headers, data=data, callback=_callback_func, **kwargs)
+        return grequests.patch(url, headers=headers, data=data,
+                               callback=_callback_func, **kwargs)
     elif method == 'DELETE':
-        return grequests.delete(url, headers=headers, callback=_callback_func, **kwargs)
+        return grequests.delete(url, headers=headers,
+                                callback=_callback_func, **kwargs)
     else:
         print("Method does not support: {}".format(method))
 
@@ -111,7 +118,8 @@ def signal_handler(signal, frame):
     global continue_test
     continue_test = False
     downtime_counter()
-    print("Number of requests that we sent and received result: {}", format(len(tasks)))
+    print("Number of requests that we sent and received result: {}",
+          format(len(tasks)))
     sys.exit(0)
 
 
