@@ -102,3 +102,6 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# admin-openrc
+test_heat_status/admin-openrc
