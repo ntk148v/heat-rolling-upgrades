@@ -110,7 +110,7 @@ def send_request(url, method, headers=None, data=None, **kwargs):
         return future_session.get(url, headers=headers,
                                   background_callback=bg_cb, **kwargs)
     elif method == 'POST':
-        return future_session.post(url, headers=headers,
+        return future_session.post(url, headers=headers, data=data,
                                    background_callback=bg_cb, **kwargs)
     elif method == 'PUT':
         return future_session.put(url, headers=headers, data=data,
