@@ -71,10 +71,14 @@ list_url = create_url
 
 delete_headers = create_headers
 
+def get_completed_stacks(stacks):
+    return [stack for stack in stacks if stack['stack_status'] ==
+            'CREATE_COMPLETE']
+
 
 if __name__ == '__main__':
     logging_config_loader()
-    i = 1
+    i = 0
     while continue_test:
         try:
             time.sleep(0.5)
@@ -83,15 +87,16 @@ if __name__ == '__main__':
             i += 1
             resp = send_request(create_url, 'POST', headers=create_headers,
                                 data=json.dumps(create_data_2))
-            # Get stack_url
-            result = json.loads(resp.result().content)
-            #stack_url = result['stack']['links'][0]['href']
 
             # List stacks
             resp = send_request(list_url, 'GET', headers=list_headers)
-            LOG.info('Current stacks: %s', resp.result().content)
-            # Delete stack
-            # delete_url= stack_url  # Readable naming
-            # resp = send_request(delete_url, 'DELETE', headers=delete_headers)
+            stacks = json.loads(resp.result().content)['stacks']
+            completed_stacks = get_completed_stacks(stacks)
+            LOG.info(completed_stacks)
+            # Delete stack - only delete completed stacks.
+            if len(completed_stacks) > 0:
+                delete_url = completed_stacks[0]['links'][0]['href']
+                resp = send_request(delete_url, 'DELETE',
+                                    headers=delete_headers)
         except ConnectionError as e:
             LOG.error('Send request failed because %s', e)
