@@ -1,5 +1,9 @@
 ## Rolling upgrade scenario - Kolla.
 
+
+![architecture](diagram/rolling_upgrade.png)
+
+
 1. Clone this repository. And cd into it.
 
 2. Setup Ocata cluster with Kolla, get 6 Heat containers: heat\_engine (2),
