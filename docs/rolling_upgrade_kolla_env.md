@@ -1,7 +1,7 @@
 ## Heat Rolling upgrade scenario in container environment.
 
 
-![architecture](diagram_n_images/rolling_upgrade_kolla_deploy.png)
+![architecture](../diagram_n_images/rolling_upgrade_kolla_deploy.png)
 
 
 1. Clone this repository. And cd into it.
