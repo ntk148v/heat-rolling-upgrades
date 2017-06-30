@@ -13,6 +13,7 @@
 
     ```
     # rabbitmqctl add_vhost ocata # New vhost named ocata
+    # rabbitmqctl set_permissions -p ocata openstack ".*" ".*" ".*"
     ```
 
 4. Backup Database with the bellow command:
