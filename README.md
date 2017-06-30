@@ -6,3 +6,7 @@
 2. Normal Enviroment: Setup OpenStack cluster follow step-by-step
    documentation. More details [here](docs/rolling_upgrade_normal_env.md)
 
+## Relate patchsets:
+
+1. [Specs Rolling upgrade for Heat](https://review.openstack.org/#/c/407989/)
+2. [Upgrade guideline](https://review.openstack.org/#/c/476061/)
