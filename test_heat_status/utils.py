@@ -30,9 +30,11 @@ def bg_cb(sess, resp):
     """
 
     if continue_test:
-        timestamp = format_second(time.time())
+        timestamp_second = time.time()
+        timestamp = format_second(timestamp_second)
         tasks.append({
             "timestamp": timestamp,
+            "timestamp_second": timestamp_second,
             "status": resp.status_code
         })
         LOG.info("%s - %d - %s" %
@@ -86,12 +88,12 @@ def downtime_counter():
             if (int(task.get('status')) / 100) == 5:
                 count += 1
                 is_find_start = False
-                start = task.get('timestamp')
+                start = task.get('timestamp_second')
         else:
             if (int(task.get('status')) / 100) == 5:
                 count += 1
             else:
-                end = task.get('timestamp')
+                end = task.get('timestamp_second')
                 is_find_start = True
                 downtime += end - start
         try:
