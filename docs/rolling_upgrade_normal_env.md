@@ -56,6 +56,7 @@
 
 10. Node2: (Different order) Restart Heat services.
 
+    ```
     # systemctl restart heat-api
     # systemctl restart heat-api-cfn
     # systemctl restart heat-engine
